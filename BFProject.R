@@ -51,13 +51,13 @@ autoplot(GSPC1) +
   guides(colour=guide_legend(title="Forecast"))
 autoplot(GSPC1) +
   autolayer(naive(GSPC1, h=24),
-            series="Naïve", PI=FALSE) +
+            series="NaÃ¯ve", PI=FALSE) +
   ggtitle("GSPC(monthly stock ending Dec 2018)") +
   xlab("Year") + ylab("Closing Price (US$)") +
   guides(colour=guide_legend(title="Forecast"))
 autoplot(GSPC1) +
   autolayer(snaive(GSPC1, h=24),
-            series="SNaïve", PI=FALSE) +
+            series="SNaÃ¯ve", PI=FALSE) +
   ggtitle("GSPC(monthly stock ending Dec 2018)") +
   xlab("Year") + ylab("Closing Price (US$)") +
   guides(colour=guide_legend(title="Forecast"))
@@ -78,7 +78,7 @@ GSfit3
 autoplot(GSPC_train) +
   autolayer(GSfit1, series="Mean", PI=FALSE) +
   autolayer(GSfit2, series="Drift", PI=FALSE) +
-  autolayer(GSfit3, series="Seasonal naïve", PI=FALSE) +
+  autolayer(GSfit3, series="Seasonal naÃ¯ve", PI=FALSE) +
   xlab("Year") + ylab("Adj.Close") +
   ggtitle("Forecasts for monthly GSPC") +
   guides(colour=guide_legend(title="Forecast"))
@@ -94,21 +94,6 @@ fit1$model
 fit6=ses(GSPC_train,alpha=0.9,h=24)
 fit6$model
 accuracy(fit6,GSPC_test)
-
-#Holt's Method
-GSPC2 <- window(GSPC1, start=2000) 
-fc <- holt(GSPC2, h=24)
-fc
-autoplot(GSPC2) +
-  autolayer(fc, series="Holt's method", PI=FALSE) +
-  ggtitle("Forecasts from Holt's method") + xlab("Year") +
-  ylab("Adj.Close") +
-  guides(colour=guide_legend(title="Forecast"))
-fc1=holt(GSPC_train,h=24)
-accuracy(fc1,GSPC_test)
-
-#To find the smoothing parameters for Holt fuction
-fc$model
 
 
 #Arima Models
